@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nu: marca y portafolio</title>
+<style>
+:root{--p:#820AD1;--w:#fff;--card:rgba(255,255,255,.14);--bd:rgba(255,255,255,.6);--fs:16px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{font-size:var(--fs);scroll-padding-top:70px}
+body{margin:0;background:var(--p);color:var(--w);font-family:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.55}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--p);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 14px;overflow-x:auto}
+nav b{font-size:1.5rem;font-weight:800;margin-right:8px}
+nav button,.tabs button,.zoom button{font:inherit;color:var(--w);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap;font-size:.85rem}
+nav button:hover,.tabs button:hover,.zoom button:hover,.tabs button.on{background:var(--w);color:var(--p)}
+.zoom{margin-left:auto;display:flex;gap:6px}
+section{max-width:1100px;margin:0 auto;padding:56px 20px 8px}
+h1{font-size:clamp(3rem,10vw,6.5rem);margin:0;line-height:1;font-weight:800}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:0 0 6px;font-weight:800}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:600;margin-bottom:6px}
+.lead{font-size:1.15rem;max-width:62ch}
+.hero{padding-top:70px}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.stat{border:1px solid var(--bd);border-radius:16px;padding:14px 20px;background:var(--card)}
+.stat b{display:block;font-size:2rem;line-height:1.1}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;color:var(--w);text-align:left;font:inherit}
+.card h3{margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0}
+button.card{cursor:pointer;transition:transform .15s,background .15s}
+button.card:hover{transform:translateY(-3px);background:rgba(255,255,255,.24)}
+.card .more{display:block;margin-top:10px;font-size:.8rem;text-decoration:underline}
+.tl{position:relative;margin:24px 0 0;padding-left:28px;border-left:2px solid var(--w)}
+.tl div{position:relative;margin-bottom:22px}
+.tl div::before{content:"";position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--w)}
+.tl b{font-size:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid var(--bd);border-radius:999px;padding:6px 16px;background:var(--card);font-size:.95rem}
+.chip.s{background:var(--w);color:var(--p);font-weight:700}
+.tabs{display:flex;gap:8px;margin:18px 0 0;flex-wrap:wrap}
+.tabs button{font-size:1rem;padding:8px 22px}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:20px}
+.flag{border:1px solid var(--bd);border-radius:16px;padding:18px;background:var(--card)}
+.flag b{font-size:1.3rem;display:block}
+footer{max-width:1100px;margin:60px auto 0;padding:24px 20px 50px;border-top:1px solid var(--bd);font-size:.8rem}
+#m{position:fixed;inset:0;background:rgba(40,0,70,.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+#m.on{display:flex}
+#m .box{background:var(--p);border:2px solid var(--w);border-radius:22px;max-width:620px;width:100%;max-height:85vh;overflow:auto;padding:28px;position:relative}
+#m h3{font-size:1.8rem;margin:0 0 4px}
+#m .x{position:absolute;right:14px;top:12px;font:inherit;font-size:1.6rem;color:var(--w);background:none;border:0;cursor:pointer}
+</style>
+</head>
+<body>
+<nav id="nav">
+<b>nu</b>
+<button data-t="s1">Historia</button><button data-t="s2">Identidad</button><button data-t="s3">Valor</button><button data-t="s4">Mercado</button><button data-t="s5">Portafolio</button>
+<div class="zoom"><button id="zo" aria-label="Reducir texto">A−</button><button id="zi" aria-label="Aumentar texto">A+</button></div>
+</nav>
+
+<section class="hero">
+<div class="eyebrow">Descripción de marca y portafolio</div>
+<h1>Nu</h1>
+<p class="lead">Una fintech que busca democratizar los servicios financieros: sin trámites burocráticos ni costosos, con una experiencia 100% digital, transparente y centrada en el usuario.</p>
+<div class="stats">
+<div class="stat"><b>135 M+</b>usuarios</div>
+<div class="stat"><b>2013</b>fundación en São Paulo</div>
+<div class="stat"><b>#1</b>banco digital más grande del mundo</div>
+</div>
+</section>
+
+<section id="s1">
+<div class="eyebrow">Historia</div><h2>De una tarjeta sin cuota de manejo a un gigante digital</h2>
+<div class="tl">
+<div><b>2013 · São Paulo</b><br>Nace Nu de la mano de David Vélez, Cristina Junqueira y Edward Wible.</div>
+<div><b>Primer producto</b><br>Una tarjeta de crédito sin cuota de manejo, administrada desde una app. Innovador para la época.</div>
+<div><b>Público inicial</b><br>Jóvenes que iniciaban su vida crediticia y personas desatendidas por la banca tradicional.</div>
+<div><b>Hoy</b><br>Atiende casi todos los segmentos, desde estudiantes hasta pymes.</div>
+</div>
+</section>
+
+<section id="s2">
+<div class="eyebrow">Identidad</div><h2>El morado que se volvió ícono</h2>
+<p class="lead">El logo morado nació como forma de diferenciación: los bancos solían usar azul, rojo o verde. Con el tiempo evolucionó hacia formas suaves y menos geométricas.</p>
+<div class="grid">
+<div class="card"><h3>Simpleza</h3><p>Una marca clara y fácil de entender.</p></div>
+<div class="card"><h3>Transparencia</h3><p>Sin letras pequeñas ni complicaciones.</p></div>
+<div class="card"><h3>Cercanía</h3><p>Humana y cercana a la gente.</p></div>
+</div>
+</section>
+
+<section id="s3">
+<div class="eyebrow">Propuesta de valor</div><h2>Experiencia del usuario primero</h2>
+<div class="chips"><span class="chip">Menos filas</span><span class="chip">Menos trámites innecesarios</span><span class="chip">Atención 24/7</span><span class="chip">Interfaz intuitiva</span><span class="chip">Productos de fácil uso</span></div>
+<h2 style="margin-top:36px;font-size:1.5rem">Valores</h2>
+<div class="chips"><span class="chip s">Simplicidad</span><span class="chip s">Experiencia de usuario</span><span class="chip s">Innovación constante</span><span class="chip s">Autonomía</span><span class="chip s">Diversidad</span><span class="chip s">Rapidez</span></div>
+<h2 style="margin-top:36px;font-size:1.5rem">Competidores</h2>
+<div class="chips"><span class="chip">Nequi</span><span class="chip">Rappipay</span><span class="chip">Lulo Bank</span><span class="chip">Daviplata</span><span class="chip">Ualá</span><span class="chip">Mercado Pago</span><span class="chip">Itaú</span><span class="chip">Bancos tradicionales</span></div>
+</section>
+
+<section id="s4">
+<div class="eyebrow">Mercado</div><h2>Presencia en América Latina</h2>
+<div class="map">
+<div class="flag"><b>Brasil</b>Mercado principal y el más variado en portafolio.</div>
+<div class="flag"><b>México</b>Mercado principal, portafolio similar al de Colombia.</div>
+<div class="flag"><b>Colombia</b>Mercado principal, sin sedes físicas (neobanco).</div>
+<div class="flag"><b>Europa</b>Objetivo a largo plazo.</div>
+</div>
+</section>
+
+<section id="s5">
+<div class="eyebrow">Portafolio</div><h2>Productos por país</h2>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="prod"></div>
+<p style="margin-top:22px">El core de Nu se evidencia en todos sus mercados; lo que cambia es la variedad de productos en cada uno.</p>
+</section>
+
+<footer>Fuentes: Blog Nu Colombia (nuevo logo, 2024; Cajitas de ahorro, 2026) · nubank.com.br/sobre-o-nu · nu.com.co</footer>
+
+<div id="m"><div class="box"><button class="x" id="mx" aria-label="Cerrar">×</button><h3 id="mt"></h3><p id="mb"></p></div></div>
+
+<script>
+const D={
+Colombia:[
+["Tarjeta Abre Caminos","MasterCard para personas sin historial crediticio o sin acceso formal al sistema financiero. El usuario debe tener un respaldo financiero equivalente al cupo, así construye vida crediticia sin correr riesgos."],
+["Tarjeta NuControl","La tarjeta tradicional, categoría MasterCard Gold. Según tu perfil, la app asigna cupo y condiciones. Proceso 100% digital."],
+["Cuenta de ahorros","Permite recibir nómina o pagos de terceros, pagar servicios públicos y facturas, recargar el celular y pagar en servicios aliados. Rendimientos de 0,1% E.A."],
+["Cajitas","Espacios seguros para guardar dinero y recibir intereses. A diferencia de un CDT tradicional, puedes sacar tu dinero en cualquier momento."],
+["CDT","CDT tradicional para incrementar tu patrimonio. Se abre desde la app y todo el proceso legal es 100% virtual. Sus tasas suelen ser las más altas del mercado nacional."],
+["Préstamos","Préstamos empresariales y de libre inversión."],
+["Alianzas","Alianzas estratégicas que complementan el portafolio: Bre-B, PSE y billeteras digitales."]],
+"México":[
+["Portafolio similar al de Colombia","Mantiene los productos centrales del neobanco."],
+["Transferencias SPEI","Transferencias electrónicas entre bancos en México."],
+["Cajitas Turbo","Versión adicional de las cajitas de ahorro, disponible en México."]],
+Brasil:[
+["Seguros","Parte de un portafolio más variado que el de otros mercados."],
+["Criptomonedas","Inversión en activos digitales."],
+["Fondos de inversión","Opciones de inversión dentro de la app."],
+["PIX","Sistema de pagos instantáneos de Brasil."],
+["Créditos con garantía de inversión","Crédito respaldado por inversiones del cliente."],
+["Anticipo de salario","Adelanto del salario desde la app."],
+["Tarjetas empresariales","Productos para negocios."],
+["Planes de inversión automática","Inversión periódica sin intervención manual."]]
+};
+const $=s=>document.querySelector(s);
+function show(c){
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.textContent===c));
+  $("#prod").innerHTML="";
+  D[c].forEach(([t,d])=>{
+    const b=document.createElement("button");b.className="card";
+    b.innerHTML="<h3></h3><p></p><span class='more'>Ver detalle</span>";
+    b.querySelector("h3").textContent=t;
+    b.querySelector("p").textContent=d.length>80?d.slice(0,78).trim()+"…":d;
+    b.onclick=()=>{$("#mt").textContent=t;$("#mb").textContent=c+" · "+d;$("#m").classList.add("on")};
+    $("#prod").appendChild(b);
+  });
+}
+Object.keys(D).forEach(c=>{const b=document.createElement("button");b.textContent=c;b.onclick=()=>show(c);$("#tabs").appendChild(b)});
+show("Colombia");
+$("#mx").onclick=()=>$("#m").classList.remove("on");
+$("#m").onclick=e=>{if(e.target.id==="m")$("#m").classList.remove("on")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#m").classList.remove("on")});
+document.querySelectorAll("nav [data-t]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.t).scrollIntoView({behavior:"smooth"}));
+let fs=16;const setFs=v=>{fs=Math.min(26,Math.max(12,v));document.documentElement.style.setProperty("--fs",fs+"px")};
+$("#zi").onclick=()=>setFs(fs+2);$("#zo").onclick=()=>setFs(fs-2);
+</script>
+</body>
+</html>

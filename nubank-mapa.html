@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapa conceptual: Nubank</title>
+<style>
+:root{--bg:#f4f1f8;--node:#fff;--text:#1d1a24;--line:#9a8bb5;--bd:#cfc6e0;--ui:#fff;--shadow:rgba(60,30,100,.15);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0c12;--node:#26302b;--text:#e8f0ea;--line:#6b5e8a;--bd:#3d4a42;--ui:#1c1824;--shadow:rgba(0,0,0,.5)}}
+:root[data-theme="dark"]{--bg:#0e0c12;--node:#26302b;--text:#e8f0ea;--line:#6b5e8a;--bd:#3d4a42;--ui:#1c1824;--shadow:rgba(0,0,0,.5)}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+#view{position:absolute;inset:0;cursor:grab;touch-action:none}
+#view.drag{cursor:grabbing}
+#canvas{position:absolute;left:0;top:0;transform-origin:0 0;padding:60px;will-change:transform}
+#lines{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+#lines path{fill:none;stroke-width:1.6}
+.row{display:flex;align-items:center}
+.kids{display:flex;flex-direction:column;gap:12px;margin-left:56px}
+.collapsed>.kids{display:none}
+.node{position:relative;display:flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--bd);border-radius:8px;background:var(--node);font-size:14px;line-height:1.3;max-width:300px;box-shadow:0 1px 4px var(--shadow);white-space:normal}
+.node.l1{font-weight:600;font-size:15px;cursor:pointer;border-color:var(--c);border-left:5px solid var(--c)}
+.node.l1:hover{box-shadow:0 0 0 2px var(--c)}
+.node.root{background:#820ad1;color:#fff;border-color:#820ad1;font-size:20px;font-weight:700;padding:14px 22px}
+.dot{flex:none;width:18px;height:18px;border-radius:50%;border:1px solid var(--line);background:var(--ui);color:var(--text);font-size:12px;line-height:1;cursor:pointer;padding:0;display:grid;place-items:center}
+.root .dot{background:#fff;color:#820ad1}
+.ui{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:6px;z-index:5}
+.ui button,.nav button{background:var(--ui);color:var(--text);border:1px solid var(--bd);border-radius:8px;min-width:40px;height:40px;font-size:18px;cursor:pointer;box-shadow:0 1px 4px var(--shadow)}
+.ui button:hover,.nav button:hover{border-color:#820ad1}
+.nav{position:fixed;left:12px;top:calc(12px + env(safe-area-inset-top,0px));right:12px;display:flex;gap:6px;overflow-x:auto;z-index:5;padding-bottom:4px}
+.nav button{font-size:13px;padding:0 12px;white-space:nowrap;border-left:4px solid var(--c)}
+.hint{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));font-size:12px;opacity:.7;background:var(--ui);padding:6px 10px;border-radius:8px;border:1px solid var(--bd);max-width:60vw}
+</style>
+</head>
+<body>
+<div class="nav" id="nav"></div>
+<div id="view"><div id="canvas"><svg id="lines"></svg><div id="tree"></div></div></div>
+<div class="ui">
+<button id="zin" title="Acercar" aria-label="Acercar">+</button>
+<button id="zout" title="Alejar" aria-label="Alejar">−</button>
+<button id="fit" title="Ver todo" aria-label="Ver todo">⤢</button>
+<button id="exp" title="Expandir todo" aria-label="Expandir todo">▾</button>
+</div>
+<div class="hint">Arrastra para mover · rueda o +/− para zoom · clic en una sección para enfocarla · ● para plegar</div>
+<script>
+const COLORS=["#a259e6","#4fb3a9","#e6a23c","#e0607e","#5b8def","#7cc46a","#d98a4f"];
+const DATA=["Nubank",[
+["¿Qué es?",["Banco digital independiente más grande del mundo","Fintech líder en América Latina","Plataforma de servicios financieros 100% digital","Unicornio digital de alto impacto"]],
+["Historia",["Fundada en 2013","Origen: Pequeña casa en São Paulo, Brasil",["Fundadores",["David Vélez (Colombiano)","Cristina Junqueira (Brasileña)","Edward Wible (Estadounidense)"]],"Hitos: 10 años en 2023 y más de 127 millones de clientes","Salida a bolsa: NYSE (Ticker: NU)"]],
+["Nombre e Identidad",["Significado: Banco Nu (Naked/Desnudo)","Concepto: Transparencia y simplicidad","Misión: Oxigenar el sector financiero","Identidad visual: Color morado distintivo"]],
+["Cultura y Valores",["Obsesión por el cliente","Lucha contra la complejidad y burocracia","Sin letras pequeñas ni costos ocultos","Diversidad: 30% comunidad LGBTQIA+ y 40% mujeres","Atención humana 24/7"]],
+["Presencia Global",["Brasil: Casi 1 de cada 3 adultos es cliente","México: Transformación de SOFIPO a Banco (2025)","Colombia: Expansión con Cuenta y CDT Nu","Centros tecnológicos: Berlín y Buenos Aires"]],
+["Productos y Servicios",["Tarjeta de crédito Mastercard (Sin cuotas)","Cuenta Nu (Ahorros con rendimientos diarios)","Cajitos Turbo (Tasas de hasta 15% anual)","CDT Nu (Inversiones seguras)","Préstamos personales y tarjetas garantizadas","Cuenta Global y segmentos Premium (Croma)"]],
+["Impacto y Tecnología",["Modelos de riesgo: IA y datos alternativos","Eficiencia: Bajo costo de servicio y escalabilidad","Inclusión: Primer crédito para millones de personas","Ahorro: Miles de millones de dólares en comisiones evitadas"]]
+]];
+const $=s=>document.querySelector(s),view=$("#view"),cv=$("#canvas"),svg=$("#lines");
+let S={x:0,y:0,k:1};
+function build(item,lvl,color){
+  const label=typeof item==="string"?item:item[0];
+  const kids=typeof item==="string"?null:item[1];
+  const wrap=document.createElement("div");wrap.className="wrap";
+  const row=document.createElement("div");row.className="row";
+  const n=document.createElement("div");
+  n.className="node"+(lvl==0?" root":lvl==1?" l1":"");
+  if(color)n.style.setProperty("--c",color);
+  n.textContent=label;
+  row.appendChild(n);wrap.appendChild(row);
+  if(kids){
+    const b=document.createElement("button");b.className="dot";b.textContent="−";b.setAttribute("aria-label","Plegar o desplegar");
+    n.appendChild(b);
+    b.onclick=e=>{e.stopPropagation();wrap.classList.toggle("collapsed");b.textContent=wrap.classList.contains("collapsed")?"+":"−";lines()};
+    const kc=document.createElement("div");kc.className="kids";
+    kids.forEach((k,i)=>kc.appendChild(build(k,lvl+1,lvl==0?COLORS[i%COLORS.length]:color)));
+    row.after(kc);
+    // place kids to the right of the node
+    wrap.style.display="flex";wrap.style.alignItems="center";
+    wrap.insertBefore(row,kc);
+    if(lvl==1){n.onclick=()=>focus(wrap)}
+  }
+  return wrap;
+}
+const tree=build(DATA,0);$("#tree").appendChild(tree);
+// nav buttons
+DATA[1].forEach((s,i)=>{
+  const b=document.createElement("button");b.textContent=s[0];b.style.setProperty("--c",COLORS[i%COLORS.length]);
+  b.onclick=()=>focus($("#tree .kids").children[i]);$("#nav").appendChild(b);
+});
+function lines(){
+  svg.innerHTML="";
+  svg.setAttribute("width",cv.scrollWidth);svg.setAttribute("height",cv.scrollHeight);
+  const off=el=>{let x=0,y=0;while(el&&el!==cv){x+=el.offsetLeft;y+=el.offsetTop;el=el.offsetParent}return{x,y}};
+  document.querySelectorAll(".wrap").forEach(w=>{
+    if(w.classList.contains("collapsed"))return;
+    const kc=w.querySelector(":scope>.kids");if(!kc)return;
+    const pn=w.querySelector(":scope>.row>.node"),p=off(pn);
+    const x1=p.x+pn.offsetWidth,y1=p.y+pn.offsetHeight/2;
+    [...kc.children].forEach(c=>{
+      const cn=c.querySelector(":scope>.row>.node"),q=off(cn);
+      const x2=q.x,y2=q.y+cn.offsetHeight/2,mx=(x1+x2)/2;
+      const path=document.createElementNS("http://www.w3.org/2000/svg","path");
+      path.setAttribute("d",`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`);
+      path.setAttribute("stroke",cn.style.getPropertyValue("--c")||"var(--line)");
+      path.setAttribute("opacity",".8");
+      svg.appendChild(path);
+    });
+  });
+}
+function apply(){cv.style.transform=`translate(${S.x}px,${S.y}px) scale(${S.k})`}
+function zoomAt(f,cx,cy){
+  const k=Math.min(4,Math.max(.15,S.k*f)),r=k/S.k;
+  S.x=cx-(cx-S.x)*r;S.y=cy-(cy-S.y)*r;S.k=k;apply();
+}
+function box(el){let x=0,y=0,e=el;while(e&&e!==cv){x+=e.offsetLeft;y+=e.offsetTop;e=e.offsetParent}return{x,y,w:el.offsetWidth,h:el.offsetHeight}}
+function focus(el,max=2.2){
+  const b=box(el),vw=innerWidth,vh=innerHeight-60,pad=.88;
+  S.k=Math.min(max,vw*pad/b.w,vh*pad/b.h);
+  S.x=vw/2-(b.x+b.w/2)*S.k;S.y=vh/2+50-(b.y+b.h/2)*S.k;
+  cv.style.transition="transform .45s ease";apply();
+  setTimeout(()=>cv.style.transition="",480);
+}
+const fit=()=>focus(cv,1.2);
+$("#zin").onclick=()=>zoomAt(1.3,innerWidth/2,innerHeight/2);
+$("#zout").onclick=()=>zoomAt(1/1.3,innerWidth/2,innerHeight/2);
+$("#fit").onclick=fit;
+$("#exp").onclick=()=>{document.querySelectorAll(".collapsed").forEach(w=>{w.classList.remove("collapsed");w.querySelector(".dot").textContent="−"});lines();fit()};
+view.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.deltaY<0?1.12:1/1.12,e.clientX,e.clientY)},{passive:false});
+// drag + pinch
+const ptr=new Map();let pd=0;
+view.addEventListener("pointerdown",e=>{ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});view.classList.add("drag")});
+view.addEventListener("pointermove",e=>{
+  if(!ptr.has(e.pointerId))return;
+  const o=ptr.get(e.pointerId);
+  if(ptr.size==2){
+    const [a,b]=[...ptr.values()];ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    const [c,d]=[...ptr.values()],nd=Math.hypot(c.x-d.x,c.y-d.y),od=Math.hypot(a.x-b.x,a.y-b.y);
+    if(od)zoomAt(nd/od,(c.x+d.x)/2,(c.y+d.y)/2);return;
+  }
+  S.x+=e.clientX-o.x;S.y+=e.clientY-o.y;ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});apply();
+});
+["pointerup","pointercancel","pointerleave"].forEach(t=>view.addEventListener(t,e=>{ptr.delete(e.pointerId);if(!ptr.size)view.classList.remove("drag")}));
+addEventListener("resize",()=>{lines()});
+lines();fit();
+</script>
+</body>
+</html>
