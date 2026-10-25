@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ficha técnica | Nu Abre Caminos</title>
+<style>
+:root{--p:#820AD1;--w:#fff;--card:rgba(255,255,255,.14);--bd:rgba(255,255,255,.6);--fs:16px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{font-size:var(--fs);scroll-padding-top:70px}
+body{margin:0;background:var(--p);color:var(--w);font-family:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.5}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--p);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 14px;overflow-x:auto}
+nav b{font-size:1.5rem;font-weight:800;margin-right:8px}
+button{font:inherit;color:var(--w);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap;font-size:.85rem}
+button:hover,button.on{background:var(--w);color:var(--p)}
+.zoom{margin-left:auto;display:flex;gap:6px}
+main{max-width:1000px;margin:0 auto;padding:50px 20px 20px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:600;margin-bottom:6px}
+h1{font-size:clamp(2.2rem,6.5vw,4rem);margin:0;line-height:1.05;font-weight:800}
+h2{font-size:1.3rem;margin:38px 0 4px;font-weight:800}
+.sub{max-width:60ch;margin:12px 0 0}
+.fees{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.fees div{border:1px solid var(--bd);border-radius:14px;padding:16px;background:var(--card)}
+.fees b{display:block;font-size:1.5rem;line-height:1.2;margin:4px 0}
+.fees span{font-size:.85rem}
+.fees .big{background:var(--w);color:var(--p)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tabs button{font-size:.95rem;padding:7px 18px}
+table{width:100%;border-collapse:collapse;margin-top:12px;border:1px solid var(--bd);border-radius:14px;overflow:hidden;background:var(--card)}
+td{border-bottom:1px solid var(--bd);padding:11px 14px;vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;width:36%}
+tr.hide{display:none}
+footer{max-width:1000px;margin:40px auto 0;padding:20px;border-top:1px solid var(--bd);font-size:.85rem}
+footer a{color:var(--w);word-break:break-all}
+</style>
+</head>
+<body>
+<nav>
+<b>nu</b>
+<div class="zoom"><button id="zo" aria-label="Reducir texto">A−</button><button id="zi" aria-label="Aumentar texto">A+</button></div>
+</nav>
+<main>
+<div class="eyebrow">Ficha técnica</div>
+<h1>Nu Abre Caminos</h1>
+<p class="sub">Tarjeta de Crédito Abre Caminos · Mastercard Gold · Colombia</p>
+
+<h2>Costos y tasas</h2>
+<div class="fees">
+<div><span>Emisión / reposición</span><b>$0</b></div>
+<div><span>Consulta de saldo en app</span><b>$0</b></div>
+<div class="big"><span>Cuota de manejo</span><b>$12.000 a $31.000</b><span>mensuales, según la tarifa oficial de julio de 2026</span></div>
+<div><span>Avance en efectivo</span><b>$6.800</b><span>1 gratis por mes</span></div>
+<div><span>Compras internacionales</span><b>0,45%</b><span>sobre la tasa de cambio</span></div>
+<div class="big"><span>Tasa de interés de referencia publicada</span><b>28,79% E.A.</b><span>2,13% M.V. en la tarifa de julio de 2026</span></div>
+</div>
+
+<h2>Características</h2>
+<div class="tabs" id="tabs"></div>
+<table id="t"></table>
+</main>
+<footer>Fuentes:<br>
+<a href="https://nu.com.co/abre-caminos/">https://nu.com.co/abre-caminos/</a><br>
+<a href="https://cdn.nubank.com.br/colombia/abre-caminos/tarifas-y-costos.pdf">https://cdn.nubank.com.br/colombia/abre-caminos/tarifas-y-costos.pdf</a>
+</footer>
+<script>
+const G={
+"Identificación":[["Marca","Nu"],["Producto","Tarjeta de Crédito Abre Caminos"],["Propietario / emisor","Nu Colombia Compañía de Financiamiento S.A."],["Tipo","Tarjeta de crédito"],["Red / franquicia","Mastercard"],["Categoría","Mastercard Gold"],["Mercado","Colombia"],["Finalidad","Construir o mejorar el historial crediticio"]],
+"Cupo y respaldo":[["Cupo inicial","Definido por el monto que el usuario deposita en la Cajita de Respaldo"],["Cajita de Respaldo","Funciona como respaldo del cupo de crédito"],["Ejemplo de cupo","Si se depositan $100.000, se obtiene inicialmente un cupo de $100.000"],["Respaldo ante impago","El dinero de la Cajita puede utilizarse para cubrir la obligación"],["Rentabilidad de Cajita de Respaldo","0,1% E.A. según la información oficial publicada por Nu"]],
+"Uso y gestión":[["Modalidad de uso","Compras a una o varias cuotas"],["Tarjeta física","Sí"],["Tarjeta virtual","Sí, puede utilizarse mientras llega la física"],["Gestión","100% mediante la App de Nu"],["Pago","Desde Cuenta Nu u otras entidades"]]
+};
+const $=s=>document.querySelector(s);
+function show(g){
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.textContent===g));
+  $("#t").innerHTML="";
+  G[g].forEach(([a,b])=>{const r=$("#t").insertRow();r.insertCell().textContent=a;r.insertCell().textContent=b});
+}
+Object.keys(G).forEach(g=>{const b=document.createElement("button");b.textContent=g;b.onclick=()=>show(g);$("#tabs").appendChild(b)});
+show("Identificación");
+let fs=16;const setFs=v=>{fs=Math.min(26,Math.max(12,v));document.documentElement.style.setProperty("--fs",fs+"px")};
+$("#zi").onclick=()=>setFs(fs+2);$("#zo").onclick=()=>setFs(fs-2);
+</script>
+</body>
+</html>
