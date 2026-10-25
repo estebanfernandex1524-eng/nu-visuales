@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Competencia y categoría | Nu Abre Caminos</title>
+<style>
+:root{--p:#820AD1;--w:#fff;--card:rgba(255,255,255,.14);--bd:rgba(255,255,255,.6);--fs:16px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{font-size:var(--fs)}
+body{margin:0;background:var(--p);color:var(--w);font-family:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.55}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--p);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 14px;overflow-x:auto}
+nav b{font-size:1.5rem;font-weight:800;margin-right:8px}
+button{font:inherit;color:var(--w);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:6px 16px;cursor:pointer;font-size:.9rem;white-space:nowrap}
+button:hover,button.on{background:var(--w);color:var(--p)}
+.zoom{margin-left:auto;display:flex;gap:6px}
+main{max-width:1000px;margin:0 auto;padding:46px 20px 20px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:600;margin-bottom:6px}
+h1{font-size:clamp(2.2rem,6.5vw,4rem);margin:0;line-height:1.05;font-weight:800}
+.sub{max-width:62ch;margin:12px 0 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.tabs button{font-size:1rem;padding:8px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px}
+.card .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--w);color:var(--p);font-weight:800;margin-bottom:8px}
+.card h2{margin:0 0 2px;font-size:1.35rem}
+.card .q{font-style:italic;margin:0 0 12px}
+.row{border-top:1px solid var(--bd);padding:10px 0 0;margin-top:10px}
+.row span{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em}
+.row.us{background:var(--w);color:var(--p);border:0;border-radius:12px;padding:10px 14px}
+.lvl{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:start}
+@media(max-width:620px){.lvl{grid-template-columns:1fr}}
+.lvl h2{font-size:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{border:1px solid var(--bd);border-radius:999px;padding:4px 14px;font-size:.92rem}
+.stack{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.qa{display:grid;grid-template-columns:48px 1fr;gap:14px}
+.qa .n{width:40px;height:40px;font-size:1.1rem;margin:0}
+.qa h2{font-size:1.1rem}
+.qa p{margin:6px 0 0}
+.hide{display:none}
+footer{max-width:1000px;margin:36px auto 0;padding:18px 20px 40px;border-top:1px solid var(--bd);font-size:.85rem}
+</style>
+</head>
+<body>
+<nav><b>nu</b><div class="zoom"><button id="zo" aria-label="Reducir texto">A−</button><button id="zi" aria-label="Aumentar texto">A+</button></div></nav>
+<main>
+<div class="eyebrow">Nu Abre Caminos</div>
+<h1>Competencia y categoría</h1>
+<p class="sub">Qué necesidad resolvemos, en qué categoría competimos y contra quién.</p>
+<div class="tabs" id="tabs"></div>
+<div id="v1" class="grid"></div>
+<div id="v2" class="stack hide"></div>
+<div id="v3" class="stack hide"></div>
+</main>
+<footer>Fuentes: creación propia y Claude para el análisis de competidores.</footer>
+<script>
+const C=[
+["Necesidad","¿Qué quiero resolver?","Comunicarme","Reintegrar o incluir a las personas al sistema financiero"],
+["Categoría","¿Qué tipo de solución busco?","Smartphones","Producto financiero"],
+["Producto","¿Qué se ofrece concretamente?","Teléfono Inteligente","Tarjeta de crédito"],
+["Marca","¿De quién es la oferta?","Apple","Nu"],
+["Línea / Referencia","¿Cuál específicamente?","Modelo y capacidad","Tarjeta Abre Caminos"],
+["Segmento","¿Para quién?","Jóvenes profesionales","Personas excluidas del S.F. o sin vida crediticia"]];
+const L=[
+["Competencia directa","Misma solución, misma forma de producto",["Tarjeta de Crédito Garantizada Banco Finandina"]],
+["Competencia indirecta","Misma necesidad, solución distinta",["Líneas Joven o Ideal de Bancolombia","Tarjetas TUYA"]],
+["Sustitutos","Compiten por el mismo recurso escaso (tiempo, dinero, atención)",["Tarjetas débito","Microcréditos","CDT","CDAT","Cuentas de ahorro","Brokers"]],
+["No consumo","El cliente decide simplemente no hacer nada",["Agiotistas","Plata debajo del colchón","Dinero en efectivo"]]];
+const Q=[
+["¿Qué necesidad resuelve realmente el producto principal de nuestra empresa?",["La tarjeta Abre Caminos resuelve una de las necesidades principales que tienen las personas excluidas del sistema financiero o que aún no han iniciado su vida crediticia, accediendo a oportunidades de crédito con mayor facilidad y sin requisitos complejos."]],
+["¿Qué otras soluciones podría considerar nuestro cliente en lugar de comprarnos a nosotros?",["Acceder a otras oportunidades de crédito sencillas en otras entidades como ARQ, Bancolombia crédito Joven, Lulo y, próximamente, la llegada de Revolut a Colombia, que ofrece oportunidades de acceder al mundo financiero de manera más fácil que con un banco tradicional."]],
+["¿Cuál sería nuestra categoría si la definiéramos de la manera más estrecha posible?",["Tarjeta de crédito digital/física sin anualidades ni cobros escondidos, con respaldo financiero y accesible para todos."]],
+["¿Y de la manera más amplia que siga siendo defendible?",["Plataforma de servicios financieros digitales (banking, inversiones, seguros, crédito) para consumidores y un “sistema operativo financiero” personal."]],
+["¿Qué competidor aparece en la definición amplia que hoy no estamos vigilando?",["Retailers con brazo financiero: Falabella (CMR), Cencosud, Éxito.","Codensa, Crédito ADDI, telecomunicaciones que empiezan a ofrecer billeteras y microcrédito (Claro, Movistar)."]]];
+const $=s=>document.querySelector(s);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e};
+C.forEach(([a,q,e,u],i)=>{
+  const d=el("div","card");d.append(el("span","n",i+1),el("h2",0,a),el("p","q",q));
+  const r1=el("div","row");r1.append(el("span",0,"Ejemplo de clase"),el("b",0,e));
+  const r2=el("div","row us");r2.append(el("span",0,"Nuestra empresa"),el("b",0,u));
+  d.append(r1,r2);$("#v1").appendChild(d);
+});
+L.forEach(([n,df,items],i)=>{
+  const d=el("div","card lvl");const l=el("div");l.append(el("span","n",i+1),el("h2",0,n));
+  const r=el("div");r.append(el("p",0,df));const ch=el("div","chips");
+  items.forEach(x=>ch.appendChild(el("span","chip",x)));r.appendChild(ch);
+  d.append(l,r);$("#v2").appendChild(d);
+});
+Q.forEach(([q,as],i)=>{
+  const d=el("div","card qa");d.appendChild(el("span","n",i+1));
+  const r=el("div");r.appendChild(el("h2",0,q));as.forEach(a=>r.appendChild(el("p",0,a)));
+  d.appendChild(r);$("#v3").appendChild(d);
+});
+const T=[["Cuadro de conceptos","v1"],["Niveles de competencia","v2"],["Preguntas clave","v3"]];
+T.forEach(([n,id])=>{const b=el("button",0,n);b.dataset.id=id;b.onclick=()=>show(id);$("#tabs").appendChild(b)});
+function show(id){T.forEach(([,i])=>$("#"+i).classList.toggle("hide",i!==id));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.id===id))}
+show("v1");
+let fs=16;const setFs=v=>{fs=Math.min(26,Math.max(12,v));document.documentElement.style.setProperty("--fs",fs+"px")};
+$("#zi").onclick=()=>setFs(fs+2);$("#zo").onclick=()=>setFs(fs-2);
+</script>
+</body>
+</html>
