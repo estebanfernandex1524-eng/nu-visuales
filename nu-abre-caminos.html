@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tarjeta Abre Caminos | Nu Colombia</title>
+<style>
+:root{--p:#820AD1;--w:#fff;--card:rgba(255,255,255,.14);--bd:rgba(255,255,255,.6);--fs:16px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{font-size:var(--fs);scroll-padding-top:70px}
+body{margin:0;background:var(--p);color:var(--w);font-family:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.55}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--p);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 14px;overflow-x:auto}
+nav b{font-size:1.5rem;font-weight:800;margin-right:8px}
+button{font:inherit;color:var(--w)}
+nav button,.zoom button{background:transparent;border:1px solid var(--bd);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap;font-size:.85rem}
+nav button:hover,.zoom button:hover{background:var(--w);color:var(--p)}
+.zoom{margin-left:auto;display:flex;gap:6px}
+section{max-width:1000px;margin:0 auto;padding:54px 20px 6px}
+h1{font-size:clamp(2.4rem,7vw,4.6rem);margin:0;line-height:1.05;font-weight:800}
+h2{font-size:clamp(1.5rem,4vw,2.2rem);margin:0 0 8px;font-weight:800}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:600;margin-bottom:6px}
+.lead{font-size:1.12rem;max-width:64ch}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;padding-top:60px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.plastic{aspect-ratio:1.586;border:2px solid var(--w);border-radius:20px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,rgba(255,255,255,.28),rgba(255,255,255,.06));box-shadow:0 12px 30px rgba(0,0,0,.3);transform:rotate(-3deg);max-width:380px;justify-self:center;width:100%}
+.plastic b{font-size:2rem}
+.plastic span{letter-spacing:.2em;font-size:1.1rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px}
+.card h3{margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+.calc label{display:block;font-weight:600;margin-bottom:8px}
+.calc input{width:100%;font:inherit;font-size:1.4rem;font-weight:700;padding:10px 14px;border-radius:12px;border:2px solid var(--w);background:transparent;color:var(--w)}
+.calc input::placeholder{color:rgba(255,255,255,.7)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:16px}
+.res div{border:1px solid var(--bd);border-radius:12px;padding:12px}
+.res b{display:block;font-size:1.5rem}
+.small{font-size:.82rem;margin-top:10px}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.steps button{border:1px solid var(--bd);background:var(--card);border-radius:14px;padding:10px 16px;cursor:pointer;text-align:left}
+.steps button.on{background:var(--w);color:var(--p);font-weight:700}
+#sd{margin-top:14px;min-height:5.5rem}
+ul{padding-left:1.2rem;margin:10px 0 0}
+li{margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{border:1px solid var(--bd);border-radius:999px;padding:6px 16px;background:var(--card);font-size:.95rem}
+.balance{background:var(--w);color:var(--p);border-radius:20px;padding:24px;margin-top:10px}
+.balance h2{color:var(--p)}
+footer{max-width:1000px;margin:50px auto 0;padding:20px;border-top:1px solid var(--bd);font-size:.8rem}
+</style>
+</head>
+<body>
+<nav>
+<b>nu</b>
+<button data-t="a">Qué es</button><button data-t="b">Para quién</button><button data-t="c">Cómo funciona</button><button data-t="d">Características</button><button data-t="e">Costos</button><button data-t="f">Balance</button>
+<div class="zoom"><button id="zo" aria-label="Reducir texto">A−</button><button id="zi" aria-label="Aumentar texto">A+</button></div>
+</nav>
+
+<section class="hero">
+<div>
+<div class="eyebrow">Nu Colombia · Tarjeta garantizada</div>
+<h1>Tarjeta Abre Caminos</h1>
+<p class="lead">Una tarjeta de crédito garantizada (<i>secured card</i>). No te presta dinero: tú depositas en una “Cajita de Respaldo” dentro de la app y ese monto se convierte en tu cupo.</p>
+</div>
+<div class="plastic"><b>nu</b><span>•••• •••• •••• ••••</span><div>Mastercard Gold</div></div>
+</section>
+
+<section id="a">
+<div class="eyebrow">Qué es</div><h2>Tu depósito es tu límite</h2>
+<div class="card calc">
+<label for="dep">Si depositas…</label>
+<input id="dep" type="number" inputmode="numeric" min="0" step="10000" value="100000" placeholder="Monto en COP">
+<div class="res">
+<div>Tu cupo<b id="cupo"></b></div>
+<div>Rendimiento de la Cajita en 1 año<b id="rend"></b></div>
+</div>
+<p class="small">Cálculo ilustrativo con 0,1% E.A. sobre el saldo, sin retiros ni cambios de tasa.</p>
+</div>
+<p style="margin-top:16px">Emitida por Nu Colombia Compañía de Financiamiento, vigilada por la Superfinanciera.</p>
+</section>
+
+<section id="b">
+<div class="eyebrow">A quién está dirigida</div><h2>Para quienes la banca no ve</h2>
+<div class="grid">
+<div class="card"><h3>Sin historial crediticio</h3><p>Personas “invisibles” para la banca.</p></div>
+<div class="card"><h3>Reportados</h3><p>Quienes fueron reportados y quieren reconstruir su reputación financiera.</p></div>
+<div class="card"><h3>Sin ingresos altos</h3><p>Basta tener la Cuenta de Ahorros Nu activa y un celular.</p></div>
+</div>
+</section>
+
+<section id="c">
+<div class="eyebrow">Cómo funciona</div><h2>Cuatro pasos</h2>
+<div class="steps" id="steps"></div>
+<div class="card" id="sd"></div>
+</section>
+
+<section id="d">
+<div class="eyebrow">Características clave</div><h2>Lo que tienes que saber</h2>
+<div class="grid">
+<div class="card"><h3>Beneficios Mastercard Gold</h3><p>Compras nacionales e internacionales y opción de diferir a cuotas.</p></div>
+<div class="card"><h3>Diferido de compras</h3><p>Avances, compras sin contacto e internacionales menores a $60 USD se difieren a 1 cuota; las demás se difieren automáticamente hasta 24 cuotas.</p></div>
+<div class="card"><h3>Construye historial</h3><p>Reporta a centrales de riesgo como una tarjeta convencional.</p></div>
+<div class="card"><h3>Protección ante mora</h3><p>Si no pagas a tiempo, se debita automáticamente la Cajita de Respaldo, evitando el reporte negativo.</p></div>
+<div class="card"><h3>Saldo libre al final</h3><p>Pagada la deuda, puedes disponer libremente del saldo y rendimientos de la Cajita.</p></div>
+</div>
+</section>
+
+<section id="e">
+<div class="eyebrow">Costos y letra menuda</div><h2>Lo que cuesta de verdad</h2>
+<div class="grid">
+<div class="card"><h3>Costo de oportunidad</h3><p>La Cajita de Respaldo rinde solo 0,1% E.A., muy por debajo de la Cuenta Nu normal.</p></div>
+<div class="card"><h3>Intereses</h3><p>Si difieres a más de una cuota, pagas intereses corrientes normales. En mora se generan intereses moratorios desde el día siguiente a la fecha límite.</p></div>
+<div class="card"><h3>Acceso</h3><p>No se solicita libremente: te la ofrecen al aplicar a Nu o te aparece disponible en la app.</p></div>
+</div>
+</section>
+
+<section id="f">
+<div class="balance">
+<div class="eyebrow">Balance honesto</div>
+<h2>Híbrido entre débito y crédito</h2>
+<p class="lead" style="margin:0">El beneficio es el reporte positivo a centrales; el costo es tener plata inmovilizada rindiendo casi nada. Solo vale la pena si tu objetivo real es construir historial, no si buscas liquidez.</p>
+</div>
+</section>
+<footer>Información sobre la Tarjeta Abre Caminos de Nu Colombia. Verifica condiciones vigentes en la app de Nu.</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const cop=n=>"$"+Math.round(n*100)/100;
+const fmt=n=>"$"+n.toLocaleString("es-CO",{maximumFractionDigits:2});
+function calc(){const v=Math.max(0,parseFloat($("#dep").value)||0);$("#cupo").textContent=fmt(v);$("#rend").textContent=fmt(v*0.001)}
+$("#dep").addEventListener("input",calc);calc();
+const ST=[
+["1. Activa","Desde el home de la app, en “Tarjeta Abre Caminos”, ingresas datos (dirección, fecha de corte y pago, PIN) y firmas el contrato digital."],
+["2. Respalda","Creas la Cajita de Respaldo y transfieres desde tu Cuenta Nu el monto que quieres como cupo."],
+["3. Usa","Usas la tarjeta virtual de inmediato mientras llega la física."],
+["4. Crece","Nu te asigna “misiones” de uso; al cumplirlas puedes acceder a un cupo preaprobado (crédito real, sin respaldo)."]];
+ST.forEach(([t,d],i)=>{const b=document.createElement("button");b.textContent=t;b.onclick=()=>{document.querySelectorAll("#steps button").forEach(x=>x.classList.remove("on"));b.classList.add("on");$("#sd").textContent=d};$("#steps").appendChild(b);if(!i)b.click()});
+document.querySelectorAll("nav [data-t]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.t).scrollIntoView({behavior:"smooth"}));
+let fs=16;const setFs=v=>{fs=Math.min(26,Math.max(12,v));document.documentElement.style.setProperty("--fs",fs+"px")};
+$("#zi").onclick=()=>setFs(fs+2);$("#zo").onclick=()=>setFs(fs-2);
+</script>
+</body>
+</html>
