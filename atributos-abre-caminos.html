@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atributos | Tarjeta Abre Caminos</title>
+<style>
+:root{--p:#820AD1;--w:#fff;--card:rgba(255,255,255,.14);--bd:rgba(255,255,255,.6);--fs:16px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{font-size:var(--fs)}
+body{margin:0;background:var(--p);color:var(--w);font-family:"Poppins","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.55}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--p);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 14px}
+nav b{font-size:1.5rem;font-weight:800;margin-right:8px}
+button{font:inherit;color:var(--w);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:6px 16px;cursor:pointer;font-size:.9rem;text-align:left}
+button:hover,button.on{background:var(--w);color:var(--p)}
+.zoom{margin-left:auto;display:flex;gap:6px}
+main{max-width:1000px;margin:0 auto;padding:46px 20px 20px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:600;margin-bottom:6px}
+h1{font-size:clamp(2.2rem,6.5vw,4rem);margin:0;line-height:1.05;font-weight:800}
+.sub{max-width:62ch;margin:12px 0 0}
+.groups{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.groups button{font-size:1.05rem;padding:10px 24px;font-weight:700}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:18px;margin-top:18px}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.side{flex-direction:row!important;flex-wrap:wrap}}
+.side{display:flex;flex-direction:column;gap:8px}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px}
+.panel h2{margin:0 0 6px;font-size:1.6rem}
+.item{border-top:1px solid var(--bd);padding:14px 0}
+.item:first-of-type{border-top:0}
+.item b{display:block;margin-bottom:2px}
+.item p{margin:0}
+.syn{background:var(--w);color:var(--p);border-radius:20px;padding:24px;margin-top:34px}
+.syn h2{margin:0 0 8px;font-size:1.5rem}
+.syn p{margin:0}
+footer{max-width:1000px;margin:36px auto 0;padding:18px 20px 40px;border-top:1px solid var(--bd);font-size:.82rem}
+</style>
+</head>
+<body>
+<nav><b>nu</b><div class="zoom"><button id="zo" aria-label="Reducir texto">A−</button><button id="zi" aria-label="Aumentar texto">A+</button></div></nav>
+<main>
+<div class="eyebrow">Análisis de producto</div>
+<h1>Atributos de la Tarjeta Abre Caminos</h1>
+<p class="sub">Dos grandes grupos: los atributos de proceso, que explican cómo se hace y se vende, y los atributos sociales, que explican qué significa para quien la usa.</p>
+<div class="groups" id="groups"></div>
+<div class="layout"><div class="side" id="side"></div><div class="panel" id="panel"></div></div>
+<div class="syn"><h2>Síntesis para análisis</h2>
+<p>Es un producto donde los atributos de proceso están optimizados para cero riesgo del emisor y máxima escala, mientras los atributos sociales están optimizados para devolver dignidad y estatus al excluido. El valor percibido es simbólico e informacional (historial + apariencia de crédito); el valor capturado por Nu es la liquidez del depósito y la data de comportamiento.</p></div>
+</main>
+<footer>Análisis de los atributos de la Tarjeta Abre Caminos de Nu Colombia.</footer>
+<script>
+const D={
+"Atributos de proceso":{
+"Marketing":[["Posicionamiento emocional, no funcional","El mensaje es “la tarjeta que cree en ti”: vende inclusión y segunda oportunidad, no tasas ni cupos."],["Discurso anti-banca tradicional","Se opone explícitamente a la “complejidad financiera tradicional” y al “no” institucional."],["Canales","100% digital: app, blog propio con contenido de educación financiera y redes. El marketing de contenidos funciona como captación."],["Segmentación por exclusión","Apunta a quien la banca rechaza, un mercado desatendido y sin competencia directa fuerte en Colombia."]],
+"Fabricación":[["Producto financiero digital","El “ensamble” es software (app Nu) + plástico Mastercard Gold + una cuenta de depósito."],["Costo marginal casi nulo","Por cada cliente nuevo; la infraestructura es la misma de la tarjeta Nu tradicional."],["Riesgo de crédito casi eliminado","No presta dinero propio: el cupo lo fondea el cliente. Eso permite aprobar masivamente sin provisiones."]],
+"Venta":[["No hay venta activa","Te la ofrecen al aplicar a Nu o aparece disponible en tu app. Es invitación, no solicitud: genera percepción de exclusividad y evita el rechazo explícito."],["Venta cruzada","Exige Cuenta de Ahorros Nu activa, así que cada tarjeta amarra un depositante."],["Cero fricción comercial","Cero fuerza comercial, cero sucursales, cero papeleo."]],
+"Función":[["Función declarada","Construir o reconstruir historial crediticio."],["Función real","Medio de pago con cupo autofondeado + reporte positivo a centrales de riesgo."],["Función latente para Nu","Captación de depósitos baratos (la Cajita rinde 0,1% E.A.) y generación de data de comportamiento para ofrecer crédito real después."],["Función pedagógica","Sistema de “misiones” que gamifica el buen uso y desemboca en cupo preaprobado."]],
+"Tiempo":[["Adquisición","Minutos. Firma digital y tarjeta virtual de uso inmediato mientras llega la física."],["Ciclo de uso","Mensual, con corte y fecha límite de pago elegidas por el cliente."],["Horizonte del producto","Transitorio por diseño: es un “peldaño”. El éxito del producto es que el cliente lo abandone y migre a una tarjeta convencional."],["Financiación","Hasta 24 cuotas automáticas en compras; 1 cuota en avances y compras internacionales pequeñas."]]},
+"Atributos sociales":{
+"Responsabilidades":[["Del emisor","Reportar correctamente a centrales, transparencia en tasas y protección al consumidor (vigilada por Superfinanciera, defensor del consumidor, SARLAFT)."],["Del usuario","Pagar con dinero propio, no con la Cajita. Nu lo recomienda expresamente, porque pagar con el respaldo no construye el hábito."],["Responsabilidad social corporativa","Bandera de inclusión financiera para población no bancarizada y rural."]],
+"Política y tabúes":[["Rompe el tabú del reportado","En Colombia estar en Datacrédito es un estigma social y laboral; el producto normaliza esa condición sin exigir explicaciones."],["Toca el tabú del sobreendeudamiento","La memoria colectiva de la UPAC y las tasas de usura hace que muchos colombianos rechacen el crédito por miedo. El respaldo propio desactiva ese miedo."],["Tensión ética y política","Se le puede criticar que cobra intereses sobre dinero que el cliente ya depositó y que paga 0,1% E.A. por retenerlo: hay quien lo lee como inclusión y quien como captación disfrazada."],["Agenda regulatoria","Encaja en la agenda de inclusión financiera y competencia en un mercado concentrado."]],
+"Color":[["Morado Nu","Es el activo de marca más reconocible de la fintech (internamente el producto se ha nombrado “Morada Abrecaminos”). Rompe con el azul y rojo corporativos de la banca tradicional."],["Simbolismo","El morado señala disrupción, juventud y tecnología, no solidez patrimonial. Es deliberado: no compite por prestigio, compite por cercanía."],["Diseño","Minimalista, sin números impresos visibles al frente en la línea Nu: estética “tech” más que “bancaria”."]],
+"Estatus":[["La tensión central","Por fuera es una Mastercard Gold; por dentro es un débito garantizado. El portador obtiene el símbolo de estatus sin el respaldo crediticio que normalmente lo justifica."],["Camuflaje","En el punto de venta nadie distingue una Abre Caminos de una tarjeta convencional. Elimina la vergüenza de la exclusión."],["Estatus aspiracional escalonado","Las misiones y el cupo preaprobado convierten el estatus en algo que se gana, no que se compra."]],
+"Fiabilidad":[["Operativa: alta","Respaldo Mastercard, aceptación nacional e internacional, tarjeta virtual, capas de seguridad de Nu, entidad vigilada."],["Reputacional: muy alta","Si el usuario no paga, se debita la Cajita y no lo reportan negativamente. Red de seguridad incorporada, difícil de “dañar”."],["Riesgo residual","El usuario sigue expuesto a intereses corrientes y de mora si difiere compras, y el rendimiento sacrificado del depósito es un costo invisible que no aparece en ninguna tarifa."]]}
+};
+const $=s=>document.querySelector(s);let g,a;
+function showGroup(n){g=n;document.querySelectorAll("#groups button").forEach(b=>b.classList.toggle("on",b.textContent===n));
+ $("#side").innerHTML="";Object.keys(D[n]).forEach(k=>{const b=document.createElement("button");b.textContent=k;b.onclick=()=>showAttr(k);$("#side").appendChild(b)});showAttr(Object.keys(D[n])[0])}
+function showAttr(k){a=k;document.querySelectorAll("#side button").forEach(b=>b.classList.toggle("on",b.textContent===k));
+ const p=$("#panel");p.innerHTML="";const h=document.createElement("h2");h.textContent=k;p.appendChild(h);
+ D[g][k].forEach(([t,d])=>{const i=document.createElement("div");i.className="item";const b=document.createElement("b");b.textContent=t;const q=document.createElement("p");q.textContent=d;i.append(b,q);p.appendChild(i)})}
+Object.keys(D).forEach(n=>{const b=document.createElement("button");b.textContent=n;b.onclick=()=>showGroup(n);$("#groups").appendChild(b)});
+showGroup("Atributos de proceso");
+let fs=16;const setFs=v=>{fs=Math.min(26,Math.max(12,v));document.documentElement.style.setProperty("--fs",fs+"px")};
+$("#zi").onclick=()=>setFs(fs+2);$("#zo").onclick=()=>setFs(fs-2);
+</script>
+</body>
+</html>
